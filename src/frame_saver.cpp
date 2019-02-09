@@ -7,41 +7,50 @@ using namespace std;
 using namespace cv;
  
 int main(int argc,char* argv[]){
-  int count = -1;
-  VideoCapture cap(argv[1]); 
+  int count = 253;
+  //cout<<argv[1]<<endl;
+  VideoCapture cap(argv[1]);
+  namedWindow("Frame",WINDOW_AUTOSIZE); 
     
    if(!cap.isOpened()){
    cout << "Error opening video stream or file" << endl;
    return -1;
   }
-     
+  Mat frame;   
   while(1){
  
-    Mat frame;
+     
+
     
-    cap >> frame;
-  
+    char c;
+    c = waitKey(1);
+	cout<<c<<endl;//getchar();
+//cout<<"Howdie"<<endl;
+    if(c=='s'){
+	    cap >> frame;   
    
     if (frame.empty())
       break;
  
-    
-    imshow( "Frame", frame );
-    waitKey(1);
-    
-    char c;
-    c = getchar();
-    if(c=='s'){
+    imshow("Frame", frame );
+    //waitKey(1);
 	count++;
 	string str = boost::lexical_cast<string>(count);
 	string name = "frame_" + str + ".png";
+	//cout<<"Writing"<<endl;
         imwrite(argv[2] + name, frame);	
+	//cout<<"Writen"<<endl;
     }
     else if(c==27){
 	break;
     }
-    else{
-        continue;
+    else if(c=='p'){
+        cap>>frame;
+	if (frame.empty())
+      break;
+ 
+    imshow("Frame", frame );
+    waitKey(1);
     }		
   }
     
