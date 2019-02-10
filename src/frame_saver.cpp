@@ -7,7 +7,7 @@ using namespace std;
 using namespace cv;
  
 int main(int argc,char* argv[]){
-  int count = 253;
+  int count = -1;
   //cout<<argv[1]<<endl;
   VideoCapture cap(argv[1]);
   namedWindow("Frame",WINDOW_AUTOSIZE); 
@@ -19,13 +19,11 @@ int main(int argc,char* argv[]){
   Mat frame;   
   while(1){
  
-     
-
-    
     char c;
-    c = waitKey(1);
+	waitKey(1);
+	
+    	c = getchar();
 	cout<<c<<endl;//getchar();
-//cout<<"Howdie"<<endl;
     if(c=='s'){
 	    cap >> frame;   
    
@@ -33,8 +31,7 @@ int main(int argc,char* argv[]){
       break;
  
     imshow("Frame", frame );
-    //waitKey(1);
-	count++;
+    count++;
 	string str = boost::lexical_cast<string>(count);
 	string name = "frame_" + str + ".png";
 	//cout<<"Writing"<<endl;
@@ -50,7 +47,7 @@ int main(int argc,char* argv[]){
       break;
  
     imshow("Frame", frame );
-    waitKey(1);
+//    waitKey(1);
     }		
   }
     
