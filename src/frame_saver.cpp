@@ -20,10 +20,7 @@ int main(int argc,char* argv[]){
   while(1){
  
     char c;
-	waitKey(1);
-	
-    	c = getchar();
-	cout<<c<<endl;//getchar();
+    c = waitKey(1);
     if(c=='s'){
 	    cap >> frame;   
    
@@ -31,7 +28,9 @@ int main(int argc,char* argv[]){
       break;
  
     imshow("Frame", frame );
-    count++;
+
+    //waitKey(1);
+	count++;
 	string str = boost::lexical_cast<string>(count);
 	string name = "frame_" + str + ".png";
 	//cout<<"Writing"<<endl;
@@ -47,7 +46,7 @@ int main(int argc,char* argv[]){
       break;
  
     imshow("Frame", frame );
-//    waitKey(1);
+    waitKey(1);
     }		
   }
     
